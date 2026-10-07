@@ -14,7 +14,7 @@ def status():
     return jsonify(
         status="healthy",
         application="devops-python-lab",
-        version="1.0"
+        version="1.1"
     )
 
 if __name__ == "__main__":
