@@ -50,20 +50,12 @@ Returns application health and version information.
 
 Example response:
 
-
-
 ```json
-
 {
-
-&#x20; "application": "devops-python-lab",
-
-&#x20; "status": "healthy",
-
-&#x20; "version": "1.1"
-
+  "application": "devops-python-lab",
+  "status": "healthy",
+  "version": "1.1"
 }
-
 ```
 
 
