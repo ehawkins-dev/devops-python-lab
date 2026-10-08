@@ -186,7 +186,94 @@ docker start devops-lab-container
 
 
 
-Terraform will be added to the project to demonstrate Infrastructure as Code and automated provisioning.
+## Infrastructure as Code (Terraform)
+
+Terraform is used to provision and manage the Flask application's Docker container using Infrastructure as Code (IaC).
+
+The configuration is located in `terraform/main.tf` and uses the `kreuzwerker/docker` provider.
+
+### Prerequisites
+
+- Terraform installed
+- Docker Desktop running
+- Docker image built locally
+
+From the project root, build the application image:
+
+```powershell
+docker build -t devops-python-lab .
+```
+
+### Deploy with Terraform
+
+Navigate to the Terraform directory:
+
+```powershell
+cd terraform
+```
+
+Initialize Terraform and validate the configuration:
+
+```powershell
+terraform init
+terraform fmt
+terraform validate
+```
+
+Preview and apply the infrastructure:
+
+```powershell
+terraform plan
+terraform apply
+```
+
+Approve the proposed changes when prompted.
+
+Verify the deployment:
+
+```powershell
+docker ps
+```
+
+Test the application at `http://localhost:5000/status`.
+
+### Manage Infrastructure Changes
+
+Modify `main.tf`, then run:
+
+```powershell
+terraform plan
+terraform apply
+```
+
+Terraform compares the desired configuration with the existing infrastructure and determines which resources need to be created, updated, or replaced.
+
+### Destroy Infrastructure
+
+Remove the Terraform-managed resources:
+
+```powershell
+terraform destroy
+```
+
+Confirm that the resources were removed:
+
+```powershell
+docker ps
+terraform state list
+```
+
+### Key Concepts Practiced
+
+- Terraform providers and resources
+- Declarative infrastructure configuration
+- Initialization, validation, planning, and application
+- Terraform state management
+- Idempotency and infrastructure drift detection
+- Resource replacement and deployment implications
+- Controlled infrastructure teardown
+
+**Note:** This project provisions Docker infrastructure locally. Cloud deployment is a possible future enhancement.
 
 
 
@@ -218,15 +305,11 @@ This project provides hands-on experience with:
 
 
 
-\## Next Steps
+## Next Steps
 
-
-
-\- Add Terraform configuration
-
-\- Provision the application using Infrastructure as Code
-
-\- Document the Terraform deployment and teardown process
-
-\- Continue improving project documentation
+- Deploy the containerized application to Microsoft Azure.
+- Expand Terraform configuration to provision cloud infrastructure.
+- Implement a CI/CD pipeline using GitHub Actions.
+- Add automated testing for the Flask API.
+- Continue improving project documentation.
 
